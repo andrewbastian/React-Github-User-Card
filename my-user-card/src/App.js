@@ -1,9 +1,7 @@
-import React, {Components} from 'react';
+import React from 'react';
 import './App.css';
 import UserCard from './Components/UserCard';
 import FollowList from './Components/FollowList'
-
-import axios from 'axios';
 
 class App extends React.Component{
   constructor(props) {
@@ -41,7 +39,8 @@ class App extends React.Component{
   }
 
   render(){
-    console.log(this.state.myData);
+    console.log('myData',this.state.myData);
+    console.log('followers',this.state.myFollowers)
     return (
       <div className='App'>
       <UserCard myData = {this.state.myData} />

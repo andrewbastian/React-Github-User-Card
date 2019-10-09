@@ -1,18 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import UserCard from './UserCard'
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    maxWidth: 345,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
   },
   paper: {
     padding: theme.spacing(2),
@@ -27,40 +27,44 @@ const FollowList = (props) => {
     return(
       <div className={classes.root}>
         {/* console.log(props) */}
-      <Grid item xs={12}>
+
                   {props.myFollowers.map(follower =>{
+                    console.log('Follower', follower);
                     return (
-                      <Card className={classes.card}>
+                      <Paper>
+                      <Card
+                        key={follower.id}
+                        className={classes.card}>
 
 
 
-                              <h1>{props.myFollowers.name}</h1>
+                              <h1>{follower.login}</h1>
 
                               <CardMedia
                                 component="img"
                                 alt="followers"
-                                height="240"
-                                image={props.myFollowers.avatar_url}
+                                height="140"
+                                width="140"
+                                image={follower.avatar_url}
                                 title = "profile pic" />
                               <CardContent>
                                  <Typography gutterBottom variant="h5" component="h2">
-                              {props.myFollowers.login}
+                              {follower.node_id}
                               </Typography>
                               <Typography variant="body2" color="textSecondary" component="p">
-                              {props.myFollowers.location}
+                              {follower.location}
                               </Typography>
                               <Typography variant="body2" color="textSecondary" component="p">
-                              {props.myFollowers.bio}
+                              {follower.bio}
                               </Typography>
                               </CardContent>
-                              <Button>{props.myFollowers.followers} Followers</Button>
-
 
 
                       </Card>
+                      </Paper>
                     )
                   })}
-                </Grid>
+
       </div>
     )
   }
